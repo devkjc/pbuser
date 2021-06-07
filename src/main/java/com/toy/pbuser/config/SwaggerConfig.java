@@ -52,7 +52,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .securityContexts(Arrays.asList(securityContext()))
                 .securitySchemes(Arrays.asList(apiKey()))
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.toy.mealimeter"))
+                .apis(RequestHandlerSelectors.basePackage("com.toy.pbuser"))
                 .paths(PathSelectors.any())
                 .build()
                 .globalResponseMessage(RequestMethod.GET, responseMessages)
@@ -63,8 +63,8 @@ public class SwaggerConfig implements WebMvcConfigurer {
     }
 
     private ApiInfo swaggerInfo() {
-        return new ApiInfoBuilder().title("Mealimeter API")
-                .description("밀리미터 api 문서 입니다. ").build();
+        return new ApiInfoBuilder().title("PostBird USER API")
+                .description("포스트버드 유저 api 문서 입니다. ").build();
     }
 
     private ApiKey apiKey() {
