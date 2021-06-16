@@ -21,7 +21,7 @@ public class UserController {
     @GetMapping("/test")
     @ApiOperation(value = "TEST")
     public ResponseEntity<String> get() {
-        return ResponseEntity.ok("TEST");
+        return ResponseEntity.ok("TEST ~");
     }
 
 }
