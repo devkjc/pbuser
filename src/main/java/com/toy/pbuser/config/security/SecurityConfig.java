@@ -70,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().disable().exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint())
                 .and().authorizeRequests()
                 .antMatchers(restSecProps.getAllowedPublicApis().stream().toArray(String[]::new)).permitAll()
-                .antMatchers("/swagger-ui.html","/swagger-resources/**","/v2/api-docs", "/configuration/**", "/webjars/**").permitAll()
+                .antMatchers("/swagger-ui.html","/swagger-resources/**","/v2/api-docs", "/configuration/**", "/webjars/**", "/api-docs").permitAll()
                 .antMatchers("/oauth/**","/csrf").permitAll()
                 .antMatchers("/", "/hello","/profile","/api/v1/user/test").permitAll()
                 .antMatchers("/actuator/**").permitAll()
