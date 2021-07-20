@@ -36,18 +36,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final SecurityFilter tokenAuthenticationFilter;
 
     @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
-
-    @Bean       // 스프링 시큐리티에서 반환될 사용자 정보 저장
-    @Override
-    public UserDetailsService userDetailsServiceBean() throws Exception {
-        return super.userDetailsServiceBean();
-    }
-
-    @Bean
     public AuthenticationEntryPoint restAuthenticationEntryPoint() {
         return (httpServletRequest, httpServletResponse, e) -> {
             Map<String, Object> errorObject = new HashMap<String, Object>();
@@ -65,9 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-
-        System.out.println("restSecProps :: " + restSecProps);
-
         configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(restSecProps.getAllowedMethods());
         configuration.setAllowedHeaders(restSecProps.getAllowedHeaders());
