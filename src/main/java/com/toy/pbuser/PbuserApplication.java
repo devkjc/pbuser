@@ -1,6 +1,7 @@
 package com.toy.pbuser;
 
 import com.toy.pbuser.config.security.SecurityService;
+import com.toy.pbuser.user.domain.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.boot.SpringApplication;
@@ -26,10 +27,10 @@ public class PbuserApplication {
 
 	@GetMapping(value = "/user")     // /user 로 매핑
 	@ApiOperation(value = "getAuth API")
-	public Map<String, Object> getAuth() {
-		Map<String, Object> userInfo = new HashMap<>();
-		userInfo.put("user", SecurityService.getUser());
-		return userInfo;
+	public User getAuth() {
+//		Map<String, Object> userInfo = new HashMap<>();
+//		userInfo.put("user", SecurityService.getUser());
+		return SecurityService.getUser();
 	}
 
 }
