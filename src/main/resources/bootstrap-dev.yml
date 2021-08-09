@@ -6,6 +6,6 @@ spring:
       default
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://ec2-3-36-123-209.ap-northeast-2.compute.amazonaws.com:8888
 encrypt:
   key: JONGCHANJJANG
