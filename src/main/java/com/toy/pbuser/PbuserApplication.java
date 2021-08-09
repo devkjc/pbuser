@@ -11,9 +11,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @SpringBootApplication
 @RestController
 @EnableFeignClients
@@ -28,8 +25,6 @@ public class PbuserApplication {
 	@GetMapping(value = "/user")     // /user 로 매핑
 	@ApiOperation(value = "getAuth API")
 	public User getAuth() {
-//		Map<String, Object> userInfo = new HashMap<>();
-//		userInfo.put("user", SecurityService.getUser());
 		return SecurityService.getUser();
 	}
 
