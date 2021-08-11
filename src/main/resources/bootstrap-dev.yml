@@ -3,7 +3,7 @@ spring:
     name: pbuser
   profiles:
     active:
-      default
+      dev
   cloud:
     config:
       uri: http://ec2-3-38-58-94.ap-northeast-2.compute.amazonaws.com:8888
