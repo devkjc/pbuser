@@ -52,6 +52,9 @@ dependencies {
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// https://mvnrepository.com/artifact/net.logstash.logback/logstash-logback-encoder
+	implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '6.3'
 }
 
 dependencyManagement {
