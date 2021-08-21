@@ -7,7 +7,7 @@
     <!--Tcp 통신하는 것 같고, 공식문서를 보니 비동기라고 함! -->
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <!-- 목적지로 쏴줄 것임. 값은 K8S 외부 주입때문에 저러함. host:port로 설정하길-->
-        <destination>${LOGSTASH_URL:-14.52.203.113:5044}</destination>
+        <destination>${LOGSTASH_URL:-58.149.234.98:5044}</destination>
         <!-- ES가 알아먹도록 JSON 형태로 인코딩까지 해주고-->
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
@@ -33,10 +33,10 @@
     <!-- 다른 불필요 설정 생략~~~ -->
 
     <!--kr.co.lsoft 는 패키지명 해당 패키지는 TRACE 레벨 이상이면, CONSOLE과 LOGSTASH 설정을 참고함. -->
-    <logger name="kr.co.lsoft" level="TRACE" additivity="false">
-        <appender-ref ref="CONSOLE" />
-        <appender-ref ref="LOGSTASH" />
-    </logger>
+<!--    <logger name="kr.co.lsoft" level="TRACE" additivity="false">-->
+<!--        <appender-ref ref="CONSOLE" />-->
+<!--        <appender-ref ref="LOGSTASH" />-->
+<!--    </logger>-->
 
     <!-- TRACE > DEBUG > INFO > WARN > ERROR, 대소문자 구분 안함 -->
     <!-- root는 전역으로 INFO 레벨 이상인 로그만 남기고 있다.-->
