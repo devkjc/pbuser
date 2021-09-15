@@ -1,6 +1,7 @@
 package com.toy.pbuser.user.domain;
 
 import com.toy.pbuser.common.domain.BaseTimeEntity;
+import com.toy.pbuser.user.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,5 +23,10 @@ public class User extends BaseTimeEntity {
 
     @Column
     private String nickName;
+
+    public User joinUser(UserDto.Req req) {
+        this.nickName = req.getNickName();
+        return this;
+    }
 
 }
