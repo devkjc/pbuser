@@ -16,6 +16,14 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    public Boolean nickNameDuplication(String nickName) {
+        return nickNameCheck(nickName);
+    }
+
+    private boolean nickNameCheck(String nickName) {
+        return userRepository.countByNickName(nickName) < 1;
+    }
+
     public UserDto.Res login() {
 
         User user = getFindAuthUser();
@@ -55,11 +63,4 @@ public class UserService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.valueOf(203), "회원이 아닙니다. 회원가입이 필요합니다."));
     }
 
-    public Boolean nickNameDuplication(String nickName) {
-        return nickNameCheck(nickName);
-    }
-
-    private boolean nickNameCheck(String nickName) {
-        return userRepository.countByNickName(nickName) < 1;
-    }
 }
