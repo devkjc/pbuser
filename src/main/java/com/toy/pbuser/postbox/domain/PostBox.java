@@ -1,6 +1,7 @@
-package com.toy.pbuser.bird.domain;
+package com.toy.pbuser.postbox.domain;
 
 import com.toy.pbuser.common.domain.BaseTimeEntity;
+import com.toy.pbuser.common.domain.Address;
 import com.toy.pbuser.user.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,24 +13,22 @@ import javax.persistence.*;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "bird")
+@Table(name = "post_box")
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Bird extends BaseTimeEntity {
+public class PostBox extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "uid_fk")
     private User user;
 
-    private String birdName;
+    @Embedded
+    private Address address;
 
-    public void setBirdName(String birdName) {
-        this.birdName = birdName;
-    }
 }

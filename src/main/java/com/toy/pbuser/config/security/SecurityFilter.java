@@ -80,7 +80,6 @@ public class SecurityFilter extends OncePerRequestFilter {
 		if (decodedToken != null) {
 			user = User.builder()
 					.uid(decodedToken.getUid())
-					.nickName(decodedToken.getName())
 					.build();
 		}
 		return user;
