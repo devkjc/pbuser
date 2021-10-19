@@ -1,5 +1,6 @@
 package com.toy.pbuser.user.controller;
 
+import com.toy.pbuser.user.domain.User;
 import com.toy.pbuser.user.dto.UserDto;
 import com.toy.pbuser.user.service.UserService;
 import io.swagger.annotations.Api;
@@ -22,6 +23,12 @@ import javax.validation.constraints.Pattern;
 public class UserController {
 
     private final UserService userService;
+
+    @GetMapping
+    @ApiOperation(value = "GET USER")
+    public User getUser() {
+        return userService.getFindAuthUser();
+    }
 
     @GetMapping("/login")
     @ApiOperation(value = "로그인")
