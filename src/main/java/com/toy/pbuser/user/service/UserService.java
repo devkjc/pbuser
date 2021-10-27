@@ -61,15 +61,15 @@ public class UserService {
     }
 
     @Transactional
-    public UserDto.SimpleRes saveNickname(String uid, String nickname) {
+    public UserDto.Res saveNickname(String uid, String nickname) {
         if (nickNameDuplication(nickname)) {
             Optional<User> byId = userRepository.findById(uid);
             if (byId.isPresent()) {
                 User user = byId.get();
-                user.setNickname(nickname);
-                return UserDto.SimpleRes.of(user);
+                user.setNickName(nickname);
+                return UserDto.Res.of(user);
             }else{
-                return UserDto.SimpleRes.of(userRepository.save(User.builder().uid(uid).nickName(nickname).build()));
+                return UserDto.Res.of(userRepository.save(User.builder().uid(uid).nickName(nickname).build()));
             }
         }else {
             throw new ProcessException("중복된 닉네임 입니다.");

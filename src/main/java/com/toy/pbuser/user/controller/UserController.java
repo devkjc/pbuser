@@ -30,6 +30,12 @@ public class UserController {
         return userService.getFindAuthUser();
     }
 
+    @GetMapping("/id")
+    @ApiOperation(value = "GET USERID")
+    public ResponseEntity<String> getUId() {
+        return ResponseEntity.ok(userService.getFindAuthUser().getUid());
+    }
+
     @GetMapping("/login")
     @ApiOperation(value = "로그인")
     public ResponseEntity<UserDto.Res> login() {
@@ -45,7 +51,7 @@ public class UserController {
 
     @PostMapping("/nickname")
     @ApiOperation(value = "닉네임 저장")
-    public ResponseEntity<UserDto.SimpleRes> saveNickname(@RequestParam @Pattern(regexp = "^[가-힣ㄱ-ㅎa-zA-Z0-9]{2,10}",
+    public ResponseEntity<UserDto.Res> saveNickname(@RequestParam @Pattern(regexp = "^[가-힣ㄱ-ㅎa-zA-Z0-9]{2,10}",
             message = "2~10자의 한글, 영문, 숫자만 사용할 수 있습니다.") String nickname) {
         return ResponseEntity.ok(userService.saveNickname(UserService.getAuthUid(), nickname));
     }

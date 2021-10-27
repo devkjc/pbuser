@@ -36,31 +36,11 @@ public class BirdDto {
     public static class Res {
 
         private Long id;
-        private UserDto.SimpleRes user;
         private String birdName;
 
         public static Res of(Bird bird) {
 
             return Res.builder()
-                    .id(bird.getId())
-                    .user(UserDto.SimpleRes.of(bird.getUser()))
-                    .birdName(bird.getBirdName())
-                    .build();
-        }
-    }
-
-    @Getter
-    @Builder
-    @ToString
-    @ApiModel(value = "BirdDto.SimpleRes")
-    public static class SimpleRes {
-
-        private Long id;
-        private String birdName;
-
-        public static SimpleRes of(Bird bird) {
-
-            return SimpleRes.builder()
                     .id(bird.getId())
                     .birdName(bird.getBirdName())
                     .build();

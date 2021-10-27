@@ -23,9 +23,8 @@ public class Bird extends BaseTimeEntity {
     @GeneratedValue(strategy = IDENTITY)
     private long id;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "uid_fk")
-    private User user;
+    @Column(name = "uid_fk")
+    private String uid;
 
     private String birdName;
 
