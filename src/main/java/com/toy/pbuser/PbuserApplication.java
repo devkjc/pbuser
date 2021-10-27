@@ -16,10 +16,4 @@ public class PbuserApplication {
 		SpringApplication.run(PbuserApplication.class, args);
 	}
 
-//	@GetMapping(value = "/user")     // /user 로 매핑
-//	@ApiOperation(value = "getAuth API")
-//	public User getAuth() {
-//		return SecurityService.getUser();
-//	}
-
 }
