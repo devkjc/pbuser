@@ -9,3 +9,9 @@ spring:
       uri: http://ec2-3-38-58-94.ap-northeast-2.compute.amazonaws.com:8888
 encrypt:
   key: JONGCHANJJANG
+
+logging:
+  file:
+    path: /usr/local/pbuser/logs
+  level:
+    root: INFO
