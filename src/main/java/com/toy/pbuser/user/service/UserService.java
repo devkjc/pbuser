@@ -1,7 +1,9 @@
 package com.toy.pbuser.user.service;
 
+import com.toy.pbuser.bird.BirdFeign;
 import com.toy.pbuser.common.exception.ProcessException;
 import com.toy.pbuser.config.security.SecurityService;
+import com.toy.pbuser.postbox.PostBoxFeign;
 import com.toy.pbuser.user.domain.User;
 import com.toy.pbuser.user.dto.UserDto;
 import com.toy.pbuser.user.repository.UserRepository;
@@ -18,6 +20,8 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BirdFeign birdFeign;
+    private final PostBoxFeign postBoxFeign;
 
     public Boolean nickNameDuplication(String nickName) {
         return userRepository.countByNickName(nickName) < 1;
@@ -43,6 +47,8 @@ public class UserService {
     }
 
     public void deleteMember(String uid) {
+        postBoxFeign.deletePostBox();
+        birdFeign.deleteBird();
         userRepository.deleteById(uid);
     }
 

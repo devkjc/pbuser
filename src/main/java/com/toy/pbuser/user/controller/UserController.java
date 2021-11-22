@@ -1,5 +1,6 @@
 package com.toy.pbuser.user.controller;
 
+import com.toy.pbuser.postbox.PostBoxFeign;
 import com.toy.pbuser.user.domain.User;
 import com.toy.pbuser.user.dto.UserDto;
 import com.toy.pbuser.user.service.UserService;
@@ -23,6 +24,7 @@ import javax.validation.constraints.Pattern;
 public class UserController {
 
     private final UserService userService;
+    private final PostBoxFeign postBoxFeign;
 
     @GetMapping
     @ApiOperation(value = "GET USER")
@@ -54,6 +56,20 @@ public class UserController {
     public ResponseEntity<UserDto.Res> saveNickname(@RequestParam @Pattern(regexp = "^[가-힣ㄱ-ㅎa-zA-Z0-9]{2,10}",
             message = "2~10자의 한글, 영문, 숫자만 사용할 수 있습니다.") String nickname) {
         return ResponseEntity.ok(userService.saveNickname(UserService.getAuthUid(), nickname));
+    }
+
+    @GetMapping("/test")
+    @ApiOperation(value = "test")
+    public ResponseEntity<?> getTest() {
+        return ResponseEntity.ok(postBoxFeign.getPostBox());
+    }
+
+    @DeleteMapping
+    @ApiOperation(value = "회원 탈퇴")
+    public ResponseEntity<?> deleteUser() {
+        String authUid = UserService.getAuthUid();
+        userService.deleteMember(authUid);
+        return ResponseEntity.ok().build();
     }
 
 }
