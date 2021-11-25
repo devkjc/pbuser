@@ -9,6 +9,6 @@ spring:
       uri: http://localhost:5002
 encrypt:
   key: JONGCHANJJANG
-logging:
-  level:
-    root: debug
+#logging:
+#  level:
+#    root: debug
