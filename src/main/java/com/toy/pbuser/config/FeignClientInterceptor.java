@@ -1,8 +1,12 @@
 package com.toy.pbuser.config;
 
 import com.toy.pbuser.config.security.SecurityService;
+import com.toy.pbuser.config.security.models.Credentials;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,11 +17,13 @@ public class FeignClientInterceptor implements RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
-        requestTemplate.header("uid", SecurityService.getUserId());
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication != null && authentication.getDetails() instanceof OAuth2AuthenticationDetails) {
-//            OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
-//            requestTemplate.header(AUTHORIZATION_HEADER, String.format("%s %s", TOKEN_TYPE, details.getTokenValue()));
-//        }
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null && authentication.getCredentials() instanceof Credentials) {
+            Credentials credentials = (Credentials) authentication.getCredentials();
+            requestTemplate.header(AUTHORIZATION_HEADER, String.format("%s %s", TOKEN_TYPE, credentials.getIdToken()));
+            requestTemplate.header("uid", credentials.getDecodedToken().getUid());
+        }
     }
 }

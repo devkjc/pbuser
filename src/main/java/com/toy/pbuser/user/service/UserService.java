@@ -9,6 +9,7 @@ import com.toy.pbuser.user.dto.UserDto;
 import com.toy.pbuser.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -63,7 +64,7 @@ public class UserService {
 
     public User getFindAuthUser() {
         return userRepository.findById(getAuthUid())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.valueOf(203), "회원이 아닙니다. 회원가입이 필요합니다."));
+                .orElseThrow(() -> new UsernameNotFoundException("회원이 아닙니다. 회원가입이 필요합니다."));
     }
 
     @Transactional

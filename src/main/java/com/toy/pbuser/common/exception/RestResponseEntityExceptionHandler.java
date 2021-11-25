@@ -1,9 +1,11 @@
 package com.toy.pbuser.common.exception;
 
+import com.toy.pbuser.common.exception.feign.FeignClientException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -77,6 +79,24 @@ public class RestResponseEntityExceptionHandler {
         final List<ErrorResponse.FieldError> errors = ErrorResponse.FieldError.of(null, null, message);
         final ErrorResponse response = ErrorResponse.of(ErrorMessage.PROCESS_ERROR, errors);
         return new ResponseEntity<>(response, HttpStatus.GONE);
+    }
+
+    @ExceptionHandler(value = { FeignClientException.class})
+    protected ResponseEntity<ErrorResponse> handleFeignClientException(FeignClientException e) {
+        log.error("ProcessException : "  +  e.getMessage());
+        final String message = e.getMessage() == null ? "" : e.getMessage();
+        final List<ErrorResponse.FieldError> errors = ErrorResponse.FieldError.of(null, null, message);
+        final ErrorResponse response = ErrorResponse.of(ErrorMessage.PROCESS_ERROR, errors);
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(value = { UsernameNotFoundException.class})
+    protected ResponseEntity<ErrorResponse> handleUsernameNotFoundException(UsernameNotFoundException e) {
+        log.error("UsernameNotFoundException : "  +  e.getMessage());
+        final String message = e.getMessage() == null ? "" : e.getMessage();
+        final List<ErrorResponse.FieldError> errors = ErrorResponse.FieldError.of(null, null, message);
+        final ErrorResponse response = ErrorResponse.of(ErrorMessage.NON_AUTHORITATIVE_INFORMATION, errors);
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(value = { TimeIsExpiredException.class })
