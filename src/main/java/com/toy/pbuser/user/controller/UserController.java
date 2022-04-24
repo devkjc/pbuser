@@ -44,7 +44,7 @@ public class UserController {
         return ResponseEntity.ok(userService.login());
     }
 
-    @GetMapping("/nickname")
+    @GetMapping("/nickName")
     @ApiOperation(value = "닉네임 중복 검사")
     public ResponseEntity<Boolean> isNicknameDuplicate(@RequestParam @Pattern(regexp = "^[가-힣ㄱ-ㅎa-zA-Z0-9]{2,10}",
                                                                    message = "2~10자의 한글, 영문, 숫자만 사용할 수 있습니다.") String nickName) {
@@ -52,11 +52,11 @@ public class UserController {
         return ResponseEntity.ok(userService.nickNameDuplication(nickName));
     }
 
-    @PostMapping("/nickname")
+    @PostMapping("/nickName")
     @ApiOperation(value = "닉네임 저장")
     public ResponseEntity<UserDto.Res> saveNickname(@RequestParam @Pattern(regexp = "^[가-힣ㄱ-ㅎa-zA-Z0-9]{2,10}",
-            message = "2~10자의 한글, 영문, 숫자만 사용할 수 있습니다.") String nickname) {
-        return ResponseEntity.ok(userService.saveNickname(UserService.getAuthUid(), nickname));
+            message = "2~10자의 한글, 영문, 숫자만 사용할 수 있습니다.") String nickName) {
+        return ResponseEntity.ok(userService.saveNickname(UserService.getAuthUid(), nickName));
     }
 
     @GetMapping("/test")
