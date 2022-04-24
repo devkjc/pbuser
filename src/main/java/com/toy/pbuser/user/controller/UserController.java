@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
 @RestController
@@ -54,12 +55,11 @@ public class UserController {
 
     @PostMapping("/nickName")
     @ApiOperation(value = "닉네임 저장")
-    public ResponseEntity<UserDto.Res> saveNickname(@RequestParam(required = false) @Pattern(regexp = "^[가-힣ㄱ-ㅎa-zA-Z0-9]{2,10}",
-            message = "2~10자의 한글, 영문, 숫자만 사용할 수 있습니다.") String nickName) {
-        log.info("nickName post :: " + nickName);
+    public ResponseEntity<UserDto.Res> saveNickname(@Valid @RequestBody UserDto.Req req) {
         String authUid = UserService.getAuthUid();
+        log.info("nickName post :: " + req.getNickName());
         log.info("authUid :: " + authUid);
-        return ResponseEntity.ok(userService.saveNickname(authUid, nickName));
+        return ResponseEntity.ok(userService.saveNickname(authUid, req));
     }
 
     @GetMapping("/test")

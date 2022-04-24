@@ -68,7 +68,9 @@ public class UserService {
     }
 
     @Transactional
-    public UserDto.Res saveNickname(String uid, String nickName) {
+    public UserDto.Res saveNickname(String uid, UserDto.Req req) {
+
+        String nickName = req.getNickName();
 
         if (nickNameDuplication(nickName)) {
             Optional<User> byId = userRepository.findById(uid);
