@@ -69,6 +69,7 @@ public class UserService {
 
     @Transactional
     public UserDto.Res saveNickname(String uid, String nickName) {
+
         if (nickNameDuplication(nickName)) {
             Optional<User> byId = userRepository.findById(uid);
             if (byId.isPresent()) {
