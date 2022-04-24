@@ -1,12 +1,10 @@
 package com.toy.pbuser.config;
 
-import com.toy.pbuser.config.security.SecurityService;
 import com.toy.pbuser.config.security.models.Credentials;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Component;
 
 @Component
