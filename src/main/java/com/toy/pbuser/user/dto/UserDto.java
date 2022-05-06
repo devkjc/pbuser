@@ -36,11 +36,13 @@ public class UserDto {
 
         private final String uid;
         private final String nickName;
+        private final String code;
 
         public static UserDto.Res of(User user) {
             return Res.builder()
                     .uid(user.getUid())
                     .nickName(user.getNickName())
+                    .code(user.getCode())
                     .build();
         }
     }
