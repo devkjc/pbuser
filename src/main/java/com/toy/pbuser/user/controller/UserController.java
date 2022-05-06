@@ -64,8 +64,8 @@ public class UserController {
 
     @GetMapping("/test")
     @ApiOperation(value = "test")
-    public ResponseEntity<?> getTest() {
-        return ResponseEntity.ok(postBoxFeign.getPostBox());
+    public ResponseEntity<String> getTest() {
+        return ResponseEntity.ok(userService.makeCode());
     }
 
     @DeleteMapping

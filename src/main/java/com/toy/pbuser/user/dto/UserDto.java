@@ -19,9 +19,11 @@ public class UserDto {
                 message = "2~10자의 한글, 영문, 숫자만 사용할 수 있습니다.")
         private String nickName;
 
-        public User toEntity() {
+        public User toEntity(String uId, String code) {
             return User.builder()
+                    .uid(uId)
                     .nickName(nickName)
+                    .code(code)
                     .build();
         }
     }

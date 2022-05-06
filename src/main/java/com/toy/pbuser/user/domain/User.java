@@ -25,6 +25,9 @@ public class User extends BaseTimeEntity {
     @Column
     private String nickName;
 
+    @Column
+    private String code;
+
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
