@@ -15,4 +15,6 @@ public interface PostBoxFeign {
     @GetMapping("/api/v1/postbox")
     List<Object> getPostBox();
 
+    @GetMapping("/api/v1/addressBook")
+    List<Object> getAddressBook();
 }
