@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient("pbpostbox")
+@FeignClient("pbpost")
 public interface PostBoxFeign {
 
     @DeleteMapping("/api/v1/postbox")
