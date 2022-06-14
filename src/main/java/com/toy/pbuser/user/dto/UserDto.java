@@ -24,6 +24,7 @@ public class UserDto {
                     .uid(uId)
                     .nickName(nickName)
                     .code(code)
+                    .timezone("Asia/Seoul")
                     .build();
         }
     }

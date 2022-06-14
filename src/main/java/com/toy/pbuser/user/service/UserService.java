@@ -9,15 +9,11 @@ import com.toy.pbuser.user.dto.UserDto;
 import com.toy.pbuser.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.math.RandomUtils;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -95,13 +91,5 @@ public class UserService {
             code = makeCode();
         }
         return code;
-    }
-
-
-    public static void main(String[] args) {
-        int aa = 0;
-        aa++;
-        System.out.println("aa++ :: " + aa++);
-        System.out.println("++aa :: " + ++aa);
     }
 }
